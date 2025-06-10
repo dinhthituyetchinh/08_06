@@ -25,6 +25,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import Adapter.AnimationAdapter;
+import Helper.PreferencesHelper;
 import Model.AnimationEntity;
 
 public class ThirdActivity extends AppCompatActivity {
@@ -43,8 +44,10 @@ public class ThirdActivity extends AppCompatActivity {
         tvBack = findViewById(R.id.tvBack);
 
         tvBack.setOnClickListener(v -> {
+            PreferencesHelper prefs = new PreferencesHelper(this);
             Intent resultIntent = new Intent();
-            resultIntent.putExtra("shouldReload2", true); // flag báo cần reload
+            resultIntent.putExtra("shouldReload2", true);
+            resultIntent.putExtra("appliedAnimationName", prefs.getAppliedAnimationName());
             setResult(RESULT_OK, resultIntent);
             finish();
         });
@@ -111,10 +114,13 @@ public class ThirdActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
+        PreferencesHelper prefs = new PreferencesHelper(this);
         Intent resultIntent = new Intent();
-        resultIntent.putExtra("shouldReload", true);
+        resultIntent.putExtra("shouldReload2", true);
+        resultIntent.putExtra("appliedAnimationName", prefs.getAppliedAnimationName());
         setResult(RESULT_OK, resultIntent);
         super.onBackPressed();
     }
+
 
 }

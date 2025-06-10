@@ -211,7 +211,10 @@ public class DetailActivity extends AppCompatActivity {
                     appPrefs.setAppliedAnimation(name, ModelUtils.toFolderName(categoryName));
                     Toast.makeText(this, "Áp dụng thành công!", Toast.LENGTH_SHORT).show();
                     updateApplyButton();
-                    setResult(RESULT_OK);
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("shouldReload", true);
+                    resultIntent.putExtra("downloadedFileName", name);
+                    setResult(RESULT_OK, resultIntent);setResult(RESULT_OK);
                     startActivity(new Intent(this, ChargingActivity.class));
                 }
 

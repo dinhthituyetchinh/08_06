@@ -95,18 +95,17 @@ public class SecondActivity extends AppCompatActivity {
         });
     }
 
-    private ActivityResultLauncher<Intent> thirdActivityLauncher = registerForActivityResult(
+    private final ActivityResultLauncher<Intent> thirdActivityLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                     boolean shouldReload = result.getData().getBooleanExtra("shouldReload2", false);
                     if (shouldReload) {
                         reloadData();
-                        categoryAdapter.notifyDataSetChanged();
-
                     }
                 }
             }
     );
+
 
 }
